@@ -3,6 +3,7 @@ package com.todo.dao;
 import java.util.*;
 
 import com.todo.service.TodoSortByDate;
+import com.todo.service.TodoSortByDateDesc;
 import com.todo.service.TodoSortByName;
 
 public class TodoList {
@@ -38,8 +39,11 @@ public class TodoList {
 	public void listAll() {
 		System.out.println("\n"
 				+ "inside list_All method\n");
+		int i = 1;
 		for (TodoItem myitem : list) {
-			System.out.println(myitem.getTitle() + myitem.getDesc());
+			System.out.println(i + ". [" + myitem.getCategory() + "]" + myitem.getTitle() + " - "
+		+ myitem.getDesc() + " - " + myitem.getDue_date() + " - " + myitem.getCurrent_date());
+			i++;
 		}
 	}
 	
@@ -49,6 +53,20 @@ public class TodoList {
 
 	public void sortByDate() {
 		Collections.sort(list, new TodoSortByDate());
+	}
+	
+	public void sortByDateDec() {
+		Collections.sort(list, new TodoSortByDateDesc());
+	}
+	
+	public void sortByCate() {
+		HashSet<String> uniCate = new HashSet<String>();
+		for(TodoItem item : list) {
+			uniCate.add(item.getCategory().trim());
+		}
+		String[] sortedCate = uniCate.toString().replace("[", "").replace("]", "").split(", ");
+		Arrays.sort(sortedCate);
+		System.out.println(Arrays.toString(sortedCate) + "\n총 " + sortedCate.length + "개의 카테고리가 등록되어 있습니다.");
 	}
 
 	public int indexOf(TodoItem t) {

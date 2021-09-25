@@ -59,11 +59,24 @@ public class TodoMain {
 				break;
 				
 			case "ls_date_desc":
+				l.sortByDateDec();
+				System.out.println("날짜역순으로 정렬하였습니다.");
+				isList = true;
+				break;
 				
+			case "ls_cate":
+				l.sortByCate();
+				isList = true;
+				break;
 				
 			case "find":
 				String str = sc.nextLine();
-				TodoUtil.find(l, str);
+				TodoUtil.find(l, str, 1);
+				break;
+				
+			case "find_cate":
+				str = sc.nextLine();
+				TodoUtil.find(l, str, 0);
 				break;
 				
 			case "help":

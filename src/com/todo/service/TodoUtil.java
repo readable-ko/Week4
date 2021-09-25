@@ -98,12 +98,24 @@ public class TodoUtil {
 	}
 	
 
-	public static void find(TodoList l, String str) {
-		for(int i = 0; i < l.getList().size(); ++i) {
-			if(l.getList().get(i).toString().contains(str.trim()) == true) {
-				System.out.println(i+1 + ". " + l.getList().get(i).toString());
+	public static void find(TodoList l, String str, int version) {
+		int count = 0;
+		if(version == 1) {
+			for(int i = 0; i < l.getList().size(); ++i) {
+				if(l.getList().get(i).toString().contains(str.trim()) == true) {
+					System.out.println(i+1 + ". " + l.getList().get(i).toString());
+					count++;
+				}
+			}
+		}else {
+			for(int i = 0; i < l.getList().size(); ++i) {
+				if(l.getList().get(i).getCategory().contains(str.trim()) == true) {
+					System.out.println(i+1 + ". " + l.getList().get(i).toString());
+					count++;
+				}
 			}
 		}
+		System.out.println(count + "개의 항목을 찾았습니다.");
 	}
 
 	public static void listAll(TodoList l) {
